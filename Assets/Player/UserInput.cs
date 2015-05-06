@@ -149,7 +149,8 @@ public class UserInput : MonoBehaviour {
 		if(Physics.Raycast(ray, out hit)) return hit.point;
 		return ResourceManager.InvalidPosition;
 	}
-	// dispell if the player holds leftalt and clicks the rmb
+	// dispell if the player right clicks, need to ignore if we hold left alt because of camera manipulaition
+
 
 	private void RightMouseClick() 
 	{
