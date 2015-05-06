@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RTS;
+using UnityEngine;
 using System.Collections;
 
 public class WorldObject : MonoBehaviour {
@@ -9,13 +10,16 @@ public class WorldObject : MonoBehaviour {
 	public Texture2D buildImage;
 	//using ints across the board, no partial values for HP and the like
 	public int cost, sellValue, hitPoints, maxHitPoints;
+	protected Bounds selectionBounds;
 	protected Player player;
 	protected string[] actions = {};
 	protected bool currentlySelected = false;
+	protected Rect playingArea = new Rect(0.0f, 0.0f, 0.0f, 0.0f);
 	//Protected is essentially equal to abstract in java
 	protected virtual void Awake() 
 	{
-		
+		selectionBounds = ResourceManager.InvalidBounds;
+		CalculateBounds();
 	}
 	//however it can have a great deal of stuff inserted into its base declaration
 	protected virtual void Start () 
@@ -30,12 +34,13 @@ public class WorldObject : MonoBehaviour {
 	
 	protected virtual void OnGUI() 
 	{
-
+		if(currentlySelected) DrawSelection();
 	}
 
-	public void SetSelection(bool selected) 
-	{
+	//Double Check that the playing area is set when we say hey we selected this object
+	public void SetSelection(bool selected, Rect playingArea) {
 		currentlySelected = selected;
+		if(selected) this.playingArea = playingArea;
 	}
 
 	public string[] GetActions() 
@@ -56,13 +61,36 @@ public class WorldObject : MonoBehaviour {
 			if(worldObject) ChangeSelection(worldObject, controller);
 		}
 	}
-	private void ChangeSelection(WorldObject worldObject, Player controller)
+
+	private void ChangeSelection(WorldObject worldObject, Player controller) 
 	{
 		//this should be called by the following line, but there is an outside chance it will not
-		SetSelection(false);
-		if(controller.SelectedObject) controller.SelectedObject.SetSelection(false);
+		SetSelection(false, playingArea);
+		if(controller.SelectedObject) controller.SelectedObject.SetSelection(false, playingArea);
 		controller.SelectedObject = worldObject;
-		worldObject.SetSelection(true);
+		worldObject.SetSelection(true, controller.hud.GetPlayingArea());
 	}
 
+	private void DrawSelection() 
+	{
+		GUI.skin = ResourceManager.SelectBoxSkin;
+		Rect selectBox = WorkManager.CalculateSelectionBox(selectionBounds, playingArea);
+		//Draw the selection box around the currently selected object, within the bounds of the playing area
+		GUI.BeginGroup(playingArea);
+		DrawSelectionBox(selectBox);
+		GUI.EndGroup();
+	}
+	//yay, i'm looking at calculating the boundy for my game objects
+	public void CalculateBounds() 
+	{
+		selectionBounds = new Bounds(transform.position, Vector3.zero);
+		foreach(Renderer r in GetComponentsInChildren< Renderer >()) {
+			selectionBounds.Encapsulate(r.bounds);
+		}
+	}
+
+	protected virtual void DrawSelectionBox(Rect selectBox)
+	{
+		GUI.Box(selectBox, "");
+	}
 }
