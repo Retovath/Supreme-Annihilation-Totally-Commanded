@@ -5,7 +5,7 @@ public class HUD : MonoBehaviour {
 
 	public GUISkin resourceSkin, ordersSkin;
 	private const int ORDERS_BAR_WIDTH = 150, RESOURCE_BAR_HEIGHT = 40;
-	private const int SELECTION_NAME_HEIGHT = 15;
+	private const int SELECTION_NAME_HEIGHT = 20;
 	private Player player;
 	// Use this for initialization
 	void Start () {
