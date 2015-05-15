@@ -174,5 +174,23 @@ public class UserInput : MonoBehaviour {
 		}
 	}
 
+	private void MouseHover() 
+	{
+		if(player.hud.MouseInBounds()) {
+			GameObject hoverObject = FindHitObject();
+			if(hoverObject) {
+				if(player.SelectedObject) player.SelectedObject.SetHoverState(hoverObject);
+				else if(hoverObject.name != "Ground") {
+					Player owner = hoverObject.transform.root.GetComponent< Player >();
+					if(owner) {
+						Unit unit = hoverObject.transform.parent.GetComponent< Unit >();
+						Building building = hoverObject.transform.parent.GetComponent< Building >();
+						if(owner.Username == player.Username && (unit || building)) player.hud.SetCursorState(CursorState.Select);
+					}
+				}
+			}
+		}
+	}
+
 
 }

@@ -93,4 +93,12 @@ public class WorldObject : MonoBehaviour {
 	{
 		GUI.Box(selectBox, "");
 	}
+
+	public virtual void SetHoverState(GameObject hoverObject) 
+	{
+		//only handle input if owned by a human player and currently selected
+		if(player && player.Human && currentlySelected) {
+			if(hoverObject.name != "Ground") player.hud.SetCursorState(CursorState.Select);
+		}
+	}
 }

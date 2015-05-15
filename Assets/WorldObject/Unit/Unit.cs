@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using RTS;
+using UnityEngine;
 using System.Collections;
 
 public class Unit : WorldObject {
@@ -20,5 +21,13 @@ public class Unit : WorldObject {
 	
 	protected override void OnGUI() {
 		base.OnGUI();
+	}
+
+	public override void SetHoverState(GameObject hoverObject) {
+		base.SetHoverState(hoverObject);
+		//only handle input if owned by a human player and currently selected
+		if(player && player.Human && currentlySelected) {
+			if(hoverObject.name == "Ground") player.hud.SetCursorState(CursorState.Move);
+		}
 	}
 }
