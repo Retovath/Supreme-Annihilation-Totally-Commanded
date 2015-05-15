@@ -1017,6 +1017,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb49fb49940177942a42374a77e4d8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeCursor: {fileID: 0}
+  selectCursor: {fileID: 2800000, guid: 095296d8dd112f84a95bc315b9237f05, type: 3}
+  leftCursor: {fileID: 2800000, guid: ace2d419c53d33143b6615b9f6bec540, type: 3}
+  rightCursor: {fileID: 2800000, guid: f77d5c9fe01c2b3468f2093179ec7739, type: 3}
+  upCursor: {fileID: 2800000, guid: 8054efd70a0aeac43a900afe4dc20114, type: 3}
+  downCursor: {fileID: 2800000, guid: bc63fe1d2b75aa0479b8946e210fd5d0, type: 3}
+  moveCursors:
+  - {fileID: 0}
+  - {fileID: 0}
+  attackCursors:
+  - {fileID: 2800000, guid: f9812dfe25a977d4d9d0ae3a17743987, type: 3}
+  - {fileID: 2800000, guid: f53bd91f7f8ae3847bc28d2afa541a4e, type: 3}
+  harvestCursors:
+  - {fileID: 2800000, guid: d02051ec0d5eccf478c0c6f3589e4a6d, type: 3}
+  - {fileID: 2800000, guid: 66b99ba88744ec649843c2f667a8fc45, type: 3}
+  mouseCursorSkin: {fileID: 0}
   resourceSkin: {fileID: 11400000, guid: 54ae278655b01264ba6b33a0aa3b3d7e, type: 2}
   ordersSkin: {fileID: 11400000, guid: 389aa959dfe441141bbcd5ef7d29a89b, type: 2}
   selectboxSkin: {fileID: 11400000, guid: 444bbf2f9e5bdd244ba2336956722306, type: 2}
