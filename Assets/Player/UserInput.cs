@@ -136,7 +136,7 @@ public class UserInput : MonoBehaviour {
 				//could also be done with a tag not a name referance
 				// i did select the ground and move it before this fix
 				else if(hitObject.name!="Ground") {
-					WorldObject worldObject = hitObject.transform.root.GetComponent< WorldObject >();
+					WorldObject worldObject = hitObject.transform.parent.GetComponent< WorldObject >();
 					if(worldObject) {
 						//we already know the player has no selected object
 						player.SelectedObject = worldObject;
