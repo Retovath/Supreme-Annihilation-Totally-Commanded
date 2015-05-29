@@ -1,5 +1,5 @@
 ﻿namespace RTS{
-	public enum CursorState{ Select, Move, Attack, PanLeft, PanRight, PanUp, PanDown, Harvest };
-	public enum ResourceType{UnitCap, Minerals, Forcium};
+	public enum CursorState{ Select, Move, Attack, PanLeft, PanRight, PanUp, PanDown, Harvest,RallyPoint };
+	public enum ResourceType{UnitCap, Minerals, Forcium,Unknown,Ore};
 
 }

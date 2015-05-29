@@ -39,7 +39,7 @@ public class WorldObject : MonoBehaviour {
 	}
 
 	//Double Check that the playing area is set when we say hey we selected this object
-	public void SetSelection(bool selected, Rect playingArea) {
+	public virtual void SetSelection(bool selected, Rect playingArea) {
 		currentlySelected = selected;
 		if(selected) this.playingArea = playingArea;
 	}
@@ -110,5 +110,9 @@ public class WorldObject : MonoBehaviour {
 		} else {
 			return false;
 		}
+	}
+	public Bounds GetSelectionBounds() 
+	{
+		return selectionBounds;
 	}
 }
